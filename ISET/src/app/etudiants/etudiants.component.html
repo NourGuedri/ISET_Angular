@@ -1,0 +1,40 @@
+<div class="container">
+    <div class="card shadow mb-4">
+    <div class="card-body">
+    <h1>Liste des étudiants</h1>
+    <table width="100%">
+        <thead>
+            <tr>
+            <th>CIN</th>
+            <th>Nom</th>
+            <th>Prénom</th>
+            <th>Date de naissance</th>
+            <th>Group</th>
+            <th>Moyenne</th>
+            <th>Résultat</th>
+            <th *ngIf="authServ.testerAdmin()">Action</th>
+            
+            </tr>
+            </thead>
+            <tbody *ngFor="let e of tab_etu">
+            <tr >
+            <td>{{e.cin}}</td>
+            <td>{{e.nom | uppercase}}</td>
+            <td>{{e.prenom}}</td>
+            <td>{{e.dateNaiss | date:'dd/MM/yyyy'}}</td>
+            <td>{{e.grp.nomGrp}}</td>
+            <td [ngStyle]="e.moy<10 ? redoubleStyle :null">{{e.moy | number : '1.2'}}</td> <!-- oubien:<td [ngStyle]="redoubleStyle">{{e.moy | number : '1.2'}}</td>
+            <td ngIf ="e.moy<10"></td> --> 
+            <td *ngIf="e.moy>=10">Admis</td>
+            <td [ngStyle]="redoubleStyle" *ngIf="e.moy<10">Redouble</td>
+           <td  *ngIf="authServ.testerAdmin()">
+                <a class="btn btn-warning" [routerLink]="['/updateEtudiant',e.cin]">
+                    <img src="../assets/img/edit.png" height="32" width="32"></a>
+                <a button type="submit" (click)="suppEtudiant(e)" class="btn btn-danger"> <img src="../assets/img/delete.png" height="32" width="32"></a>
+            </td>
+            </tr>
+            </tbody>
+            </table>
+            </div>
+            </div>
+            </div>

@@ -1,0 +1,46 @@
+<div class="container">
+    <h2>Ajouter un étudiant</h2>
+    <form >
+    <div class="col-sm-4 col-md-4 col-lg-4">
+    <label >CIN</label>
+    
+    <input type="number"[(ngModel)]="newEtu.cin" name="cin" class="form-control">
+    
+    </div>
+    <div class="col-sm-4 col-md-4 col-lg-4" >
+    <label >Nom</label>
+    
+    <input type="text"[(ngModel)]="newEtu.nom" name="nom" class="form-control">
+    
+    </div>
+    <div class="col-sm-4 col-md-4 col-lg-4">
+    <label >Prénom</label>
+    
+    <input type="text"[(ngModel)]="newEtu.prenom" name="prenom" class="form-control">
+    
+    </div>
+    <div class="col-sm-4 col-md-4 col-lg-4">
+    <label >Date de naissance</label>
+    <input type="date" [(ngModel)]="newEtu.dateNaiss" name="dateNaissance" class="form-control">
+    </div>
+    <div class="col-sm-4 col-md-4 col-lg-4">
+        <label>Groupe</label>
+        <select class="form-control form-control-lg" name="grpid" [(ngModel)]="newCin">
+        <option *ngFor="let g of groups" [value]="g.idgrp"> {{g.nomGrp}} </option>
+        </select> 
+        </div>
+    <div class="col-sm-2 col-md-2 col-lg-2">
+    <label >Moyenne</label>
+    
+    <input type="number" [(ngModel)]="newEtu.moy" name="moyenne" class="form-control">
+</div><br>
+    <div class="mt-8">
+    
+    <button type="submit" (click)="ajouterEtudiant()" class="btn btn-success">Ajouter</button>
+    
+    </div>
+    </form>
+    </div>
+    <div>
+       
+    </div>

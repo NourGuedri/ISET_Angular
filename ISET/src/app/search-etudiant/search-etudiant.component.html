@@ -1,0 +1,58 @@
+<div class="container">
+    <div class="card shadow mb-4">
+    <div class="card-body">
+    <h1>chercher un etudiant </h1> 
+    <form name="f1">
+        Choisir un critère de recherche :
+        <input type="radio" [(ngModel)]="critere" value="nom" name="critere"> par nom
+        <input type="radio" [(ngModel)]="critere" value="groupe" name="critere"> par groupe
+        <input type="radio" [(ngModel)]="critere" value="moy" name="critere"> par moyenne
+        </form><br>
+        <div [ngSwitch]="critere">
+        <form name="f2" class="form-inline">
+        <div  class="form-group mx-sm-3 mb-2 mt-2 " *ngSwitchCase="'nom'">
+        <label>Nom à chercher </label>
+        <input type="text" class="form-control" name="nom" class="form-control" #nomEtu (keyup)="chercherParNom(nomEtu.value)">
+        </div>
+        <div *ngSwitchCase="'groupe'" class="form-group">
+            <label>Group  à chercher </label> <select class="form-control form-control-lg" name="grpid"
+        [(ngModel)]="grpidRech" (change)="chercherParGrp()">
+        <option value="0">Tous</option>
+        <option *ngFor="let gr of list_grp" value={{gr.idgrp}}>{{gr.nomGrp}}</option>
+        </select>
+        </div>
+        <div *ngSwitchCase="'moy'" class="form-group">
+            <label>moyenne à chercher </label>
+        <input type="number" class="form-control" name="moy" class="form-control" #moyetu (keyup)="chercherParmoy(moyetu.value)">
+
+    </div>
+        </form>
+        </div>
+    
+    <table width="100%">
+        <thead>
+            <tr>
+            <th>CIN</th>
+            <th>Nom</th>
+            <th>Prénom</th>
+            <th>Date de naissance</th>
+            <th>Group</th>
+            <th>Moyenne</th>
+            
+            
+            </tr>
+            </thead>
+            <tbody *ngFor="let e of list_etu">
+            <tr >
+            <td>{{e.cin}}</td>
+            <td>{{e.nom | uppercase}}</td>
+            <td>{{e.prenom}}</td>
+            <td>{{e.dateNaiss | date:'dd/MM/yyyy'}}</td>
+            <td>{{e.grp.nomGrp}}</td>
+            <td>{{e.moy | number : '1.2'}}</td>
+            </tr>
+            </tbody>
+            </table>
+            </div>
+            </div>
+            </div>

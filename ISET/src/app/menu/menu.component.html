@@ -1,0 +1,28 @@
+
+<nav class="navbar navbar-expand-sm bg-info navbar-light" *ngIf="!authServ.isConnected">
+    <div class="container-fluid">
+    <a class="navbar-brand" href="">ISET</a>
+    </div></nav>
+    <nav class="navbar navbar-expand-sm bg-info navbar-light" *ngIf="authServ.isConnected">
+        <div class="container-fluid">
+        <a class="navbar-brand" href="">ISET</a>
+        
+    <button class="navbar-toggler" type="button" data-bs-
+    toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-
+    controls="navbarNavAltMarkup" aria-expanded="false" aria-
+    label="Toggle navigation">
+    
+    <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+    <a class="nav-link" routerLink="/etudiants">Etudiants</a>
+    <a class="nav-link" routerLink="/add-etudiant" *ngIf="authServ.testerAdmin()">Ajout etudiant</a>
+    <a class="nav-link" routerLink="/search-etudiant" >Recherche Etudiant</a>
+    <a class="nav-link" >{{authServ.userCourant}}</a>
+    <a class="nav-link" (click)="authServ.disconnect()" style="cursor: pointer;">Deconnexion</a>
+
+    </div>
+    </div>
+    </div>
+    </nav>
